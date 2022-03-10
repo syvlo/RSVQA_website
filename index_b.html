@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<title>RSVQA</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+<script src="USGS_split_train_images_reduced.js"></script>
+
+<script src="USGS_split_train_questions_reduced.js"></script>
+<script src="USGS_split_train_answers_reduced.js"></script>
+<script src="imagesS2_reduced.js"></script>
+
+<script src="questionsS2_reduced.js"></script>
+<script src="answersS2_reduced.js"></script>
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif;}
+body, html {
+    height: 100%;
+    color: #777;
+    line-height: 1.8;
+}
+
+.selected-button:hover {
+  color:white !important;
+  background-color:#616161 !important
+}
+
+/* Create a Parallax Effect */
+.bgimg-1, .bgimg-2, .bgimg-3 {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* First image (Logo. Full height) */
+.bgimg-1 {
+    background-image: url('images/Background1.jpg');
+    min-height: 100%;
+}
+
+/* Second image (DL) */
+.bgimg-2 {
+    background-image: url("images/Background1.jpg");
+    min-height: 400px;
+}
+
+/* Third image (Contact) */
+.bgimg-3 {
+    background-image: url("images/Background1.jpg");
+    min-height: 400px;
+}
+
+.w3-wide {letter-spacing: 10px;}
+.w3-hover-opacity {cursor: pointer;}
+
+/* Turn off parallax scrolling for tablets and phones */
+@media only screen and (max-device-width: 1600px) {
+    .bgimg-1, .bgimg-2, .bgimg-3 {
+        background-attachment: scroll;
+        min-height: 400px;
+    }
+}
+</style>
+<body onload="switchDataSet(0)">
+
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+  <div class="w3-bar" id="myNavbar">
+    <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
+      <i class="fa fa-bars"></i>
+    </a>
+    <a href="#home" class="w3-bar-item w3-button"><i class="fa fa-home"></i> HOME</a>
+    <a href="#overview" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-space-shuttle"></i> OVERVIEW</a>
+    <a href="#dataset" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-database"></i> DATASET</a>
+    <a href="#downloads" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-cloud-download-alt"></i> DOWNLOADS</a>
+    <a href="#contact" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-envelope"></i> CONTACT</a>
+    <!--<a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-red">
+      <i class="fa fa-search"></i>
+    </a>-->
+  </div>
+
+  <!-- Navbar on small screens -->
+  <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
+    <a href="#overview" class="w3-bar-item w3-button" onclick="toggleFunction()">OVERVIEW</a>
+    <a href="#dataset" class="w3-bar-item w3-button" onclick="toggleFunction()">DATASET</a>
+    <a href="#downloads" class="w3-bar-item w3-button" onclick="toggleFunction()">DOWNLOADS</a>
+    <a href="#contact" class="w3-bar-item w3-button" onclick="toggleFunction()">CONTACT</a>
+    <!--<a href="#" class="w3-bar-item w3-button">SEARCH</a>-->
+  </div>
+</div>
+
+<!-- First Parallax Image with Logo Text -->
+<div class="bgimg-1 w3-display-container w3-opacity-min" id="home">
+  <div class="w3-display-middle" style="white-space:nowrap;">
+    <span class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity"><span class="w3-hide-small">RSVQA</span></span>
+  </div>
+</div>
+
+
+<!-- Container (Portfolio Section) -->
+<div class="w3-content w3-container w3-padding-64" id="overview">
+  <h3 class="w3-center">OVERVIEW</h3>
+  <p class="w3-left-align">This page presents the RSVQA project, and contains links to the datasets and code used in the following papers:</p>
+  <ul class="w3-ul w3-card-4">
+    <li class="w3-bar">
+      <img src="TGRS20.png" class="w3-bar-item w3-hide-small" style="width:105px">
+      <div class="w3-bar-item">
+        <span class="w3-large">RSVQA: Visual Question Answering for Remote Sensing Data,</span><br>
+        <span>Sylvain Lobry, Diego Marcos, Jesse Murray, Devis Tuia,</span><br>
+        <span>IEEE Transactions on Geoscience and Remote Sensing, 2020 (submitted)</span>
+      </div>
+    </li>
+
+    <li class="w3-bar">
+      <img src="IGARSS19.png" class="w3-bar-item  w3-hide-small" style="width:105px">
+      <div class="w3-bar-item">
+        <span class="w3-large">Visual Question Answering from Remote Sensing Images,</span><br>
+        <span>Sylvain Lobry, Jesse Murray, Diego Marcos, Devis Tuia,</span><br>
+        <span>International Geoscience and Remote Sensing Symposium (IGARSS) 2019.</span><br>
+        <span><a href="https://ieeexplore.ieee.org/abstract/document/8898891">IEEE Library</a></span>
+      </div>
+    </li>
+  </ul>
+  <p class="w3-left-align">Remote sensing images contain a wealth of information which can be useful for a wide range of tasks including land cover classification, object counting or detection. However, most of the available methodologies are task-specific, thus inhibiting generic and easy access to the information contained in remote sensing data. As a consequence, accurate remote sensing product generation still requires expert knowledge. With Visual Question Answering for Remote Sensing (RSVQA), we propose a system to extract information from remote sensing data that is accessible to every user: we use questions formulated in natural language and use them to interact with the images. With the system, images can be queried to obtain high level information specific to the image content or relational dependencies between objects visible in the images. Using an automatic method introduced in the articles above, we built two datasets (using low and high resolution data) of image/question/answer triplets. The information required to build the questions and answers is queried from OpenStreetMap (OSM).</p>
+  <p class="w3-left-align">On this page, we display some examples from the train sets presented in the papers above, and make the datasets and the code available. If you use them, please cite the TGRS paper above.</p>
+</div>
+
+<!-- Second Parallax Image with Portfolio Text -->
+<div class="bgimg-2 w3-display-container w3-opacity-min">
+  <div class="w3-display-middle">
+    <span class="w3-xxlarge w3-text-white w3-wide">DATASET</span>
+  </div>
+</div>
+
+<!-- Container (About Section) -->
+<div class="w3-content w3-container w3-padding-64" id="dataset">
+  <h3 class="w3-center">DATASET</h3>
+  <div class="w3-row w3-center w3-dark-grey">
+      <button class="w3-button w3-half w3-dark-grey" id="VHRButton" onclick="switchDataSet(0)">Very high resolution dataset</button>
+      <button class="w3-button w3-half w3-grey" id="LRButton" onclick="switchDataSet(1)">Low resolution dataset</button>
+  </div>
+  <div class="w3-row w3-center w3-dark-grey w3-padding-16">
+  <div class="w3-half w3-section">
+    <span class="w3-xlarge" id="numberImages">X</span><br>
+    Images
+  </div>
+  <div class="w3-half w3-section">
+    <span class="w3-xlarge" id="numberQuestions">Y</span><br>
+    Questions
+  </div>
+</div>
+  <p id="desc_dataset">We have created a database using <a href="https://www.usgs.gov/centers/eros/science/usgs-eros-archive-aerial-photography-high-resolution-orthoimagery-hro?qt-science_center_objects=0#qt-science_center_objects">USGS' high resolution (15.24cm) orthorectified images</a> and questions and answers derived from <a href="https://www.openstreetmap.org">OSM</a>. You can explore it here.</p>
+  <p id="help_nav">Use left/right arrows to navigates between images and shift+left/right arrows to navigate between questions.</p>
+  <div class="w3-row">
+    <div class="w3-col m4 w3-center w3-padding-large">
+      <img id="VQAImage" src="dataUSGS_reduced/0.png" class="w3-round w3-image" alt="0" width="500" height="500">
+      <div class="w3-third m6 w3-center w3-padding-large fas fa-angle-left" onclick="shiftImage(-1)"></div>
+      <div class="w3-third m6 w3-center w3-padding-large fa fa-random" onclick="randomImage()"></div>
+      <div class="w3-third m6 w3-center w3-padding-large fas fa-angle-right" onclick="shiftImage(1)"></div>
+      <div class="w3 m6 w3-center "><input id="inputImageNumber" type="text" class="w3-input" placeholder="0"></div>
+    </div>
+
+    <div  class="w3-col m8 w3-padding-large">
+        <div id="questionsTable" class="w3-responsive">
+        </div>
+        <div class="w3-third m6 w3-center w3-padding-large fas fa-angle-left" onclick="shiftTable(-1)"></div>
+        <div class="w3-third m6 w3-center w3-padding-large" id="totalQuestionPages">1/10</div>
+        <div class="w3-third m6 w3-center w3-padding-large fas fa-angle-right" onclick="shiftTable(1)"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Second Parallax Image with Portfolio Text -->
+<div class="bgimg-2 w3-display-container w3-opacity-min">
+  <div class="w3-display-middle">
+    <span class="w3-xxlarge w3-text-white w3-wide">DOWNLOADS</span>
+  </div>
+</div>
+
+<!-- Container (Portfolio Section) -->
+<div class="w3-content w3-container w3-padding-64" id="downloads">
+  <h3 class="w3-center">DOWNLOADS</h3>
+    <ul class="w3-ul w3-card-4">
+      <li class="w3-bar">
+        <div class="w3-bar-item">
+          <span class="w3-large"><a href="https://cloud.sylvainlobry.com/index.php/s/JBRs6WtScNansdb">Code</a></span>
+        </div>
+      </li>
+
+      <li class="w3-bar">
+        <div class="w3-bar-item">
+          <span class="w3-large"><a href="https://cloud.sylvainlobry.com/index.php/s/4Qg5AXX8YfCswmX">Low resolution dataset</a></span>
+        </div>
+      </li>
+
+      <li class="w3-bar">
+        <div class="w3-bar-item">
+          <span class="w3-large"><a href="https://cloud.sylvainlobry.com/index.php/s/f7NpYQKqx4bZStx">High resolution dataset</a></span>
+        </div>
+      </li>
+  </ul>
+</div>
+
+<!-- Third Parallax Image with Portfolio Text -->
+<div class="bgimg-3 w3-display-container w3-opacity-min">
+  <div class="w3-display-middle">
+     <span class="w3-xxlarge w3-text-white w3-wide">CONTACT</span>
+  </div>
+</div>
+
+<!-- Container (Contact Section) -->
+<div class="w3-content w3-container w3-padding-64" id="contact">
+  <h3 class="w3-center">PEOPLE</h3>
+  <p class="w3-center">Sylvain Lobry, Jesse Murray, Diego Marcos, Devis Tuia</p>
+  <p class="w3-center"><i class="fa fa-envelope fa-fw w3-hover-text-black w3-xlarge w3-margin-right"></i>Email: firstname.lastname at wur.nl<br></p>
+  <p class="w3-center">This work was funded by CNES under the R&T project "Application des techniques de Visual Question Answering a des données d'imagerie satellitaire"</p>
+</div>
+
+<!-- Footer -->
+<footer class="w3-center w3-black w3-padding-64 w3-opacity w3-hover-opacity-off">
+  <a href="#home" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
+  <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-text-green">w3.css</a></p>
+</footer>
+ 
+<script>
+// Change style of navbar on scroll
+window.onscroll = function() {myFunction()};
+function myFunction() {
+    var navbar = document.getElementById("myNavbar");
+    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+        navbar.className = "w3-bar" + " w3-card" + " w3-animate-top" + " w3-white";
+    } else {
+        navbar.className = navbar.className.replace(" w3-card w3-animate-top w3-white", "");
+    }
+}
+
+// Used to toggle the menu on small screens when clicking on the menu button
+function toggleFunction() {
+    var x = document.getElementById("navDemo");
+    if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+    } else {
+        x.className = x.className.replace(" w3-show", "");
+    }
+}
+</script>
+<script src="showDataset.js"></script>
+</body>
+</html>
